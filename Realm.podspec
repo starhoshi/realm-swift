@@ -144,6 +144,7 @@ Pod::Spec.new do |s|
                                 'TVOS_DEPLOYMENT_TARGET' => '$(TVOS_DEPLOYMENT_TARGET_$(XCODE_VERSION_MAJOR))',
                               }
   s.preserve_paths          = %w(include scripts)
+  s.resource_bundles        = {'realm_objc_privacy' => ['Realm/PrivacyInfo.xcprivacy']}
 
   s.ios.deployment_target   = '11.0'
   s.osx.deployment_target   = '10.13'
