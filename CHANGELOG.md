@@ -19,7 +19,7 @@ x.y.z Release notes (yyyy-MM-dd)
   try realm.write {
     let obj = MixedObject()
     obj.anyValue = AnyRealmValue.fromArray(list)
-    realm.add(o)
+    realm.add(obj)
   }
   ```
 * Added new operators to Swift's Query API for supporting querying nested collections.
@@ -35,6 +35,10 @@ x.y.z Release notes (yyyy-MM-dd)
 ### Fixed
 * <How to hit and notice issue? what was the impact?> ([#????](https://github.com/realm/realm-swift/issues/????), since v?.?.?)
 * None.
+
+### Deprecations
+
+* `rlm_valueType` is deprecated in favour of `rlm_anyValueType` which now includes collections (List and Dictionary).
 
 <!-- ### Breaking Changes - ONLY INCLUDE FOR NEW MAJOR version -->
 
