@@ -8,7 +8,10 @@ x.y.z Release notes (yyyy-MM-dd)
   each of the metadata Realms rather than sharing one between them
   ([Core #7552](https://github.com/realm/realm-core/pull/7552)).
 * Improve perfomance of IN queries and chained OR equality queries for
-  UUID/ObjectId types. ([.Net * #3566](https://github.com/realm/realm-dotnet/issues/3566))
+  UUID/ObjectId types. ([.Net #3566](https://github.com/realm/realm-dotnet/issues/3566))
+* Force building as a dynamic library when installing via SPM. This is required
+  to work around Xcode building static targets in a way incompatible with App
+  Store Connect's privacy manifest scanning ([#8561](https://github.com/realm/realm-swift/pull/8561)).
 
 ### Fixed
 * `-[RLMUser allSessions]` did not include sessions which were currently
