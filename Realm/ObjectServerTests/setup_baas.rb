@@ -91,6 +91,10 @@ def setup_stitch
     end
 
     puts `git config --show-origin --list`
+    puts `rm -f ~/.gitconfig`
+    puts `touch ~/.gitconfig`
+    puts `git config --show-origin --list`
+
     stitch_dir = "#{BUILD_DIR}/stitch"
     if !Dir.exist?(stitch_dir)
         puts 'cloning stitch'
