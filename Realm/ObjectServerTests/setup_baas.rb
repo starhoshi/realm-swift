@@ -166,7 +166,7 @@ def setup_stitch
     # we don't want to modify the global configuration as that breaks Xcode
     `mkdir -p #{stitch_dir}/home`
     `cp ~/.gitconfig #{stitch_dir}/home`
-    `HOME=#{stitch_dir}/home git config --global --add url."git@github.com:".insteadOf "https://github.com/"`
+    `HOME=#{stitch_dir}/home git config --global --add url."git@github.com:10gen/".insteadOf "https://github.com/10gen/"`
     puts `HOME=#{stitch_dir}/home git config --show-origin --list`
 
     exports << "export HOME=#{stitch_dir}/home"
