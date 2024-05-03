@@ -98,6 +98,10 @@ def setup_stitch
         puts 'stitch dir exists'
     end
 
+    puts 'clone a private repo'
+    puts `git clone git@github.com:10gen/cloud-auth-common #{BUILD_DIR}/cloud-auth-common`
+    puts `rm -rf cloud-auth-common #{BUILD_DIR}/cloud-auth-common`
+
     puts 'checking out stitch'
     stitch_worktree = "#{go_root}/src/github.com/10gen/stitch"
     if Dir.exist?("#{stitch_dir}/.git")
@@ -169,6 +173,9 @@ def setup_stitch
     `HOME=#{stitch_dir}/home git config --global --add url."git@github.com:10gen/".insteadOf "https://github.com/10gen/"`
     puts `HOME=#{stitch_dir}/home git config --show-origin --list`
 
+    puts 'clone a private repo 2'
+    puts `git clone git@github.com:10gen/cloud-auth-common #{BUILD_DIR}/cloud-auth-common`
+    puts `rm -rf cloud-auth-common #{BUILD_DIR}/cloud-auth-common`
 
     exports << "export HOME=#{stitch_dir}/home"
     exports << "export GOROOT=\"#{go_root}\""
@@ -179,8 +186,9 @@ def setup_stitch
     exports << "export DYLD_LIBRARY_PATH='#{LIB_DIR}'"
     exports << "export GOPRIVATE=\"github.com/10gen/*\""
 
-    puts 'clone a private repo'
-    `git clone git@github.com:10gen/cloud-auth-common`
+    puts 'clone a private repo 3'
+    puts `HOME=#{stitch_dir}/home git clone git@github.com:10gen/cloud-auth-common #{BUILD_DIR}/cloud-auth-common`
+    puts `rm -rf cloud-auth-common #{BUILD_DIR}/cloud-auth-common`
 
     puts 'build create_user binary'
 
