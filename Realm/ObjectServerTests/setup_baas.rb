@@ -167,6 +167,7 @@ def setup_stitch
     `mkdir -p #{stitch_dir}/home`
     `cp ~/.gitconfig #{stitch_dir}/home`
     `HOME=#{stitch_dir}/home git config --global --add url."git@github.com:".insteadOf "https://github.com/"`
+    `HOME=#{stitch_dir}/home git config --show-origin --list`
 
     exports << "export HOME=#{stitch_dir}/home"
     exports << "export GOROOT=\"#{go_root}\""
