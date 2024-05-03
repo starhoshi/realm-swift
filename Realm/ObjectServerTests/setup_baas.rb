@@ -169,6 +169,7 @@ def setup_stitch
     `HOME=#{stitch_dir}/home git config --global --add url."git@github.com:10gen/".insteadOf "https://github.com/10gen/"`
     puts `HOME=#{stitch_dir}/home git config --show-origin --list`
 
+
     exports << "export HOME=#{stitch_dir}/home"
     exports << "export GOROOT=\"#{go_root}\""
     exports << "export PATH=\"$GOROOT/bin:$PATH\""
@@ -177,6 +178,9 @@ def setup_stitch
     exports << "export PATH=\"$PATH:$STITCH_PATH/etc/transpiler/bin\""
     exports << "export DYLD_LIBRARY_PATH='#{LIB_DIR}'"
     exports << "export GOPRIVATE=\"github.com/10gen/*\""
+
+    puts 'clone a private repo'
+    `git clone git@github.com:10gen/cloud-auth-common`
 
     puts 'build create_user binary'
 
