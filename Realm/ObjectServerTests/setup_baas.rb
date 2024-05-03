@@ -31,6 +31,7 @@ MONGO_DIR="#{BUILD_DIR}/mongodb-macos-x86_64-#{MONGODB_VERSION}"
 # exit immediately if any subcommand fails
 class Object
   def `(command)
+    puts command
     ret = super
     exit 1 unless $?.success?
     ret
