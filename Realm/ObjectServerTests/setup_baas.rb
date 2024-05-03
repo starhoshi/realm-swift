@@ -39,7 +39,7 @@ end
 
 def setup_mongod
     if !File.exist?("#{BIN_DIR}/mongo")
-        `cd '#{BUILD_DIR}' && curl --silent '#{MONGODB_URL}' | tar xz`
+        `cd '#{BUILD_DIR}' && curl '#{MONGODB_URL}' | tar xz`
         FileUtils.cp("#{MONGO_DIR}/bin/mongo", BIN_DIR)
         FileUtils.cp("#{MONGO_DIR}/bin/mongod", BIN_DIR)
     end
@@ -85,7 +85,7 @@ def setup_stitch
 
     if !File.exist?("#{go_root}/bin/go")
         puts 'downloading go'
-        `cd #{BUILD_DIR} && curl --silent "https://dl.google.com/go/go#{GO_VERSION}.darwin-amd64.tar.gz" | tar xz`
+        `cd #{BUILD_DIR} && curl "https://dl.google.com/go/go#{GO_VERSION}.darwin-amd64.tar.gz" | tar xz`
         puts `mkdir -p #{go_root}/src/github.com/10gen`
     end
 
@@ -118,7 +118,7 @@ def setup_stitch
 
     if !File.exist?("#{BUILD_DIR}/stitch-support.tar.xz")
         puts 'downloading stitch support'
-        puts `cd #{BUILD_DIR} && curl --silent -O "#{STITCH_SUPPORT_URL}"`
+        puts `cd #{BUILD_DIR} && curl -O "#{STITCH_SUPPORT_URL}"`
     end
 
     stitch_dir = stitch_worktree
