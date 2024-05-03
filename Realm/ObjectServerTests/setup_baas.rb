@@ -118,7 +118,7 @@ def setup_stitch
 
     if !File.exist?("#{BUILD_DIR}/stitch-support.tar.xz")
         puts 'downloading stitch support'
-        puts `cd #{BUILD_DIR} && curl -O "#{STITCH_SUPPORT_URL}"`
+        puts `cd #{BUILD_DIR} && curl --verbose -O "#{STITCH_SUPPORT_URL}"`
     end
 
     stitch_dir = stitch_worktree
