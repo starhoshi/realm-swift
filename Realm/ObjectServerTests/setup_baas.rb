@@ -90,11 +90,6 @@ def setup_stitch
         puts `mkdir -p #{go_root}/src/github.com/10gen`
     end
 
-    puts `git config --show-origin --list`
-    puts `rm -f ~/.gitconfig`
-    puts `touch ~/.gitconfig`
-    puts `git config --show-origin --list`
-
     stitch_dir = "#{BUILD_DIR}/stitch"
     if !Dir.exist?(stitch_dir)
         puts 'cloning stitch'
@@ -173,16 +168,11 @@ def setup_stitch
 
     # Cloning the dependencies requires override the clone URL to use ssh, but
     # we don't want to modify the global configuration as that breaks Xcode
-    `mkdir -p #{stitch_dir}/home`
-    `cp ~/.gitconfig #{stitch_dir}/home`
-    `HOME=#{stitch_dir}/home git config --global --add url."git@github.com:10gen/".insteadOf "https://github.com/10gen/"`
-    puts `HOME=#{stitch_dir}/home git config --show-origin --list`
+    # `mkdir -p #{stitch_dir}/home`
+    # `cp ~/.gitconfig #{stitch_dir}/home`
+    # `HOME=#{stitch_dir}/home git config --global --add url."git@github.com:10gen/".insteadOf "https://github.com/10gen/"`
 
-    puts 'clone a private repo 2'
-    puts `git clone git@github.com:10gen/cloud-auth-common #{BUILD_DIR}/cloud-auth-common`
-    puts `rm -rf cloud-auth-common #{BUILD_DIR}/cloud-auth-common`
-
-    exports << "export HOME=#{stitch_dir}/home"
+    # exports << "export HOME=#{stitch_dir}/home"
     exports << "export GOROOT=\"#{go_root}\""
     exports << "export PATH=\"$GOROOT/bin:$PATH\""
 
@@ -190,10 +180,6 @@ def setup_stitch
     exports << "export PATH=\"$PATH:$STITCH_PATH/etc/transpiler/bin\""
     exports << "export DYLD_LIBRARY_PATH='#{LIB_DIR}'"
     exports << "export GOPRIVATE=\"github.com/10gen/*\""
-
-    puts 'clone a private repo 3'
-    puts `HOME=#{stitch_dir}/home git clone git@github.com:10gen/cloud-auth-common #{BUILD_DIR}/cloud-auth-common`
-    puts `rm -rf cloud-auth-common #{BUILD_DIR}/cloud-auth-common`
 
     puts 'build create_user binary'
 
