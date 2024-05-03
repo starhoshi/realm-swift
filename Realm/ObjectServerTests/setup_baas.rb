@@ -161,9 +161,13 @@ def setup_stitch
         cd '#{stitch_dir}/etc/transpiler' && yarn install && yarn run build -t "#{TRANSPILER_TARGET}" &&
         cp -c bin/transpiler #{BUILD_DIR}/bin`
 
-    puts "TRANSPILER SIZE"
-    puts `ls -l #{stitch_dir}/etc/transpiler/bin`
+    # Cloning the dependencies requires override the clone URL to use ssh, but
+    # we don't want to modify the global configuration as that breaks Xcode
+    `mkdir -p #{stitch_dir}/home`
+    `cp ~/.gitconfig #{stitch_dir}/home`
+    `HOME=#{stitch_dir}/home git config --global --add url."git@github.com:".insteadOf "https://github.com/"`
 
+    exports << "export HOME=#{stitch_dir}/home"
     exports << "export GOROOT=\"#{go_root}\""
     exports << "export PATH=\"$GOROOT/bin:$PATH\""
 
