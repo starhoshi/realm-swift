@@ -142,13 +142,13 @@ def setup_stitch
         puts `chmod +x '#{assisted_agg_filepath}'`
     end
 
-    if `which node`.empty? && !Dir.exist?("#{BUILD_DIR}/node-v#{NODE_VERSION}-darwin-x64")
+    if `which node || true`.empty? && !Dir.exist?("#{BUILD_DIR}/node-v#{NODE_VERSION}-darwin-x64")
         puts "downloading node 🚀"
         puts `cd '#{BUILD_DIR}' && curl -O "https://nodejs.org/dist/v#{NODE_VERSION}/node-v#{NODE_VERSION}-darwin-x64.tar.gz" && tar xzf node-v#{NODE_VERSION}-darwin-x64.tar.gz`
         exports << "export PATH=\"#{BUILD_DIR}/node-v#{NODE_VERSION}-darwin-x64/bin/:$PATH\""
     end
 
-    if `which yarn`.empty?
+    if `which yarn || true`.empty?
         `rm -rf "$HOME/.yarn"`
         `export PATH=\"#{BUILD_DIR}/node-v#{NODE_VERSION}-darwin-x64/bin/:$PATH\" && curl -o- -L https://yarnpkg.com/install.sh | bash`
         exports << "export PATH=\"$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH\""
