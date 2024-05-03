@@ -90,6 +90,7 @@ def setup_stitch
         puts `mkdir -p #{go_root}/src/github.com/10gen`
     end
 
+    puts `git config --show-origin --list`
     stitch_dir = "#{BUILD_DIR}/stitch"
     if !Dir.exist?(stitch_dir)
         puts 'cloning stitch'
