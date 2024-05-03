@@ -173,23 +173,6 @@ static std::string serialize(id obj) {
     return std::string(static_cast<const char *>(data.bytes), data.length);
 }
 
-static std::string fakeJWT() {
-    std::string unencoded_prefix = serialize(@{@"alg": @"HS256"});
-    std::string unencoded_body = serialize(@{
-        @"user_data": @{@"token": @"dummy token"},
-        @"exp": @123,
-        @"iat": @456,
-        @"access": @[@"download", @"upload"]
-    });
-    std::string encoded_prefix, encoded_body;
-    encoded_prefix.resize(realm::util::base64_encoded_size(unencoded_prefix.size()));
-    encoded_body.resize(realm::util::base64_encoded_size(unencoded_body.size()));
-    realm::util::base64_encode(unencoded_prefix, encoded_prefix);
-    realm::util::base64_encode(unencoded_body, encoded_body);
-    std::string suffix = "Et9HFtf9R3GEMA0IICOfFMVXY7kkTX1wr4qCyhIf58U";
-    return encoded_prefix + "." + encoded_body + "." + suffix;
-}
-
 // A network transport which doesn't actually do anything
 @interface NoOpTransport : NSObject <RLMNetworkTransport>
 @end
