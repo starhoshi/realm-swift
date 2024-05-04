@@ -244,18 +244,6 @@ class FakeSyncUser : public realm::SyncUser {
 }
 @end
 
-// Xcode 13 adds -[NSUUID compare:] so this warns about the category
-// implementing a method which already exists, but we can't use just the
-// built-in one yet.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
-@implementation NSUUID (RLMUUIDCompareTests)
-- (NSComparisonResult)compare:(NSUUID *)other {
-    return [[self UUIDString] compare:other.UUIDString];
-}
-@end
-#pragma clang diagnostic pop
-
 bool RLMThreadSanitizerEnabled() {
 #if __has_feature(thread_sanitizer)
     return true;
